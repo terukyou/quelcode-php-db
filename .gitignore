@@ -1,0 +1,17 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode
+.vscode/*
+!/DocumentRoot/.vscode
+
+# 掲示板課題の画像
+/DocumentRoot/php-challenge4/member_picture/*
+!/DocumentRoot/php-challenge4/member_picture/.gitkeep
+
+# MySQLの記録領域
+/docker/mysql/mysql
+/docker/mysql/mysqlvolume/*
+!/docker/mysql/mysqlvolume/.gitkeep
