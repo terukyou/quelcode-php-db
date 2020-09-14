@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <link rel="stylesheet" href="style.css">
     <title>プレエントリーお申し込み | QUELCODE ISA オンラインプログラミングスクール | 卒業まで学費不要、日本初のISAを採用</title>
 </head>
 
@@ -17,7 +18,7 @@
         <div class="title">
             <h2>【ISA】QUELCODE</h2>
             <h2>プレエントリーフォーム</h2>
-            <p>応募はこちらから。日本で初めてISA(学費後払い)を採用したプログラミングスクールの募集です。全国からのご応募をおまちしています。</p>
+            <p>応募はこちらから。日本で初めてISA(学費後払い)を採用したプログラミングスクール<br>の募集です。全国からのご応募をおまちしています。</p>
         </div>
         <form action="#">
             <div>
@@ -269,8 +270,10 @@
                 </select>
                 <p>現在のお住まいの都道府県を選択ください。</p>
             </div>
+            <div>
             <input type="submit" value="入力内容を確認">
             <p><a href="#">プライバシーポリシー</a>をお読みの上、同意して送信してください。</p>
+            </div>
         </form>
     </div>
 </body>

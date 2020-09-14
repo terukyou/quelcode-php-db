@@ -1,0 +1,41 @@
+@charset "UTF-8";
+html{
+    font-size: 100%;
+}
+.wrapper{
+    margin: 0 auto;
+    width: 630px;
+}
+h1{
+    padding-left: 50px;
+    padding-top: 50px;
+}
+.title{
+    text-align: center;
+}
+input,label,select[name="pref"]{
+    display: block;
+    width: 100%;
+}
+select[name="year"],
+select[name="month"],
+select[name="day"]{
+    width: 30%;
+}
+.red{
+    background-color: rgb(217,83,79);
+    color: white;
+    border-radius: 3px;
+}
+input,select{
+    border: 2px rgb(217,217,217) solid;
+    border-radius: 3px;
+    height: 40px;
+}
+form div{
+    padding-top: 20px;
+}
+input[type="submit"]{
+    background-color: rgb(255,152,0);
+    color: white;
+}
