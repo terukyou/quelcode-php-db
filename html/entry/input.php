@@ -10,12 +10,21 @@ if (!empty($_POST)) {
     // 項目に入力されてない場合
     if (empty($_POST['name']) && trim($_POST['name'] === '')) {
         $error['name'] = 'blank';
+    }elseif (strlen($_POST['name'])>100) {
+    // 文字数が半角100文字以上の時
+        $error['name']='length';
     }
     if (empty($_POST['phonetic']) && trim($_POST['phonetic']==='')) {
         $error['phonetic'] = 'blank';
+    }elseif (strlen($_POST['phonetic'])>100) {
+    // 文字数が半角100文字以上の時
+        $error['phonetic']='length';
     }
     if (empty($_POST['email']) && trim($_POST['email']==='')) {
         $error['email'] = 'blank';
+    }elseif (strlen($_POST['phonetic'])>100) {
+    // 文字数が半角100文字以上の時
+        $error['phonetic']='length';
     }
     if (empty($_POST['phone']) && trim($_POST['phone']==='')) {
         $error['phone'] = 'blank';
@@ -64,12 +73,18 @@ if (!empty($_POST)) {
                 <?php if ($error['name'] === 'blank') : ?>
                     <p class="error">お名前は必須項目です</p>
                 <?php endif; ?>
+                <?php if($error['name']):?>
+                    <p class="error">お名前は半角100文字以内で入力してください。</p>
+                <?php endif; ?>
             </div>
             <div>
                 <label>ふりがな<span class="red">必須</span></label>
                 <input type="text" name="phonetic" placeholder="やまだ たろう" value="<?php echo htmlspecialchars($_POST['phonetic'], ENT_QUOTES); ?>">
                 <?php if ($error['phonetic'] === 'blank') : ?>
                     <p class="error">ふりがなは必須項目です</p>
+                <?php endif; ?>
+                <?php if($error['phonetic']):?>
+                    <p class="error">ふりがなは半角100文字以内で入力してください。</p>
                 <?php endif; ?>
             </div>
             <div>
@@ -78,6 +93,9 @@ if (!empty($_POST)) {
                 <p>確認メールが届きます。入力の間違いがないようにご確認ください。</p>
                 <?php if ($error['email'] === 'blank') : ?>
                     <p class="error">メールアドレスは必須項目です</p>
+                <?php endif; ?>
+                <?php if($error['phonetic']):?>
+                    <p class="error">メールアドレスは半角100文字以内で入力してください。</p>
                 <?php endif; ?>
             </div>
             <div>
