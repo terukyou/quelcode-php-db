@@ -1,4 +1,12 @@
-<?php require('dbconnect.php'); ?>
+<?php require('dbconnect.php');
+session_start();
+if (!empty($_POST)) {
+    // POSTをセッションにいれて入力確認画面へ
+    $_SESSION['join'] = $_POST;
+    header('Location:confirm.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
