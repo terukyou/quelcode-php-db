@@ -1,24 +1,30 @@
 <?php require('dbconnect.php');
 session_start();
+// セレクトタグの選択した内容をselectedにする
+function selected($key,$option)
+{
+    echo array_key_exists($key, $_POST) && $_POST[$key] == $option ? 'selected' : '';
+}
+
 if (!empty($_POST)) {
     // 項目に入力されてない場合
-    if ($_POST['name'] === '') {
+    if (empty($_POST['name']) && trim($_POST['name'] === '')) {
         $error['name'] = 'blank';
     }
-    if ($_POST['phonetic'] === '') {
-        $error['name'] = 'blank';
+    if (empty($_POST['phonetic']) && trim($_POST['phonetic']==='')) {
+        $error['phonetic'] = 'blank';
     }
-    if ($_POST['email'] === '') {
-        $error['name'] = 'blank';
+    if (empty($_POST['email']) && trim($_POST['email']==='')) {
+        $error['email'] = 'blank';
     }
-    if ($_POST['phone'] === '') {
-        $error['name'] = 'blank';
+    if (empty($_POST['phone']) && trim($_POST['phone']==='')) {
+        $error['phone'] = 'blank';
     }
-    if ($_POST['year'] === '' || $_POST['month'] || $_POST['day']) {
-        $error['name'] = 'blank';
+    if (empty($_POST['year']) || empty($_POST['month']) || empty($_POST['day'])) {
+        $error['birthday'] = 'blank';
     }
-    if ($_POST['prefecture'] === '') {
-        $error['name'] = 'blank';
+    if (empty($_POST['prefecture']) && trim($_POST['prefecture']==='')) {
+        $error['prefecture'] = 'blank';
     }
     // エラーがない時
     if (empty($error)) {
@@ -53,7 +59,7 @@ if (!empty($_POST)) {
         <form action="" method="post">
             <div>
                 <label>お名前<span class="red">必須</span></label>
-                <input type="text" name="name" placeholder="山田太郎">
+                <input type="text" name="name" placeholder="山田太郎" value="<?php echo htmlspecialchars($_POST['name'], ENT_QUOTES); ?>">
                 <p>漢字/フルネームでご記入ください</p>
                 <?php if ($error['name'] === 'blank') : ?>
                     <p class="error">お名前は必須項目です</p>
@@ -61,23 +67,23 @@ if (!empty($_POST)) {
             </div>
             <div>
                 <label>ふりがな<span class="red">必須</span></label>
-                <input type="text" name="phonetic" placeholder="やまだ たろう">
-                <?php if ($error['name'] === 'blank') : ?>
+                <input type="text" name="phonetic" placeholder="やまだ たろう" value="<?php echo htmlspecialchars($_POST['phonetic'], ENT_QUOTES); ?>">
+                <?php if ($error['phonetic'] === 'blank') : ?>
                     <p class="error">ふりがなは必須項目です</p>
                 <?php endif; ?>
             </div>
             <div>
                 <label>メールアドレス<span class="red">必須</span></label>
-                <input type="email" name="email" placeholder="example@mail.com">
+                <input type="email" name="email" placeholder="example@mail.com" value="<?php echo htmlspecialchars($_POST['email'], ENT_QUOTES); ?>">
                 <p>確認メールが届きます。入力の間違いがないようにご確認ください。</p>
-                <?php if ($error['name'] === 'blank') : ?>
+                <?php if ($error['email'] === 'blank') : ?>
                     <p class="error">メールアドレスは必須項目です</p>
                 <?php endif; ?>
             </div>
             <div>
                 <label>電話番号<span class="red">必須</span></label>
-                <input type="tel" name="phone" placeholder="09012345678">
-                <?php if ($error['name'] === 'blank') : ?>
+                <input type="tel" name="phone" placeholder="09012345678" value="<?php echo htmlspecialchars($_POST['phone'], ENT_QUOTES); ?>">
+                <?php if ($error['phone'] === 'blank') : ?>
                     <p class="error">電話番号は必須項目です</p>
                 <?php endif; ?>
             </div>
@@ -274,7 +280,7 @@ if (!empty($_POST)) {
                     ?>
                 </select>
                 <p>現在のお住まいの都道府県を選択ください。</p>
-                <?php if ($error['name'] === 'blank') : ?>
+                <?php if ($error['prefecture'] === 'blank') : ?>
                     <p class="error">都道府県は必須項目です</p>
                 <?php endif; ?>
             </div>
