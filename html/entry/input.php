@@ -8,34 +8,41 @@ function selected($key,$option)
 
 if (!empty($_POST)) {
     // 項目に入力されてない場合
+// 名前
     if (empty($_POST['name']) && trim($_POST['name'] === '')) {
         $error['name'] = 'blank';
     }elseif (strlen($_POST['name'])>100) {
     // 文字数が半角100文字以上の時
         $error['name']='length';
     }
+// ふりがな
     if (empty($_POST['phonetic']) && trim($_POST['phonetic']==='')) {
         $error['phonetic'] = 'blank';
     }elseif (strlen($_POST['phonetic'])>100) {
     // 文字数が半角100文字以上の時
         $error['phonetic']='length';
     }
+// メールアドレス
     if (empty($_POST['email']) && trim($_POST['email']==='')) {
         $error['email'] = 'blank';
     }elseif (strlen($_POST['phonetic'])>100) {
     // 文字数が半角100文字以上の時
         $error['phonetic']='length';
     }
+// 電話番号
     if (empty($_POST['phone']) && trim($_POST['phone']==='')) {
         $error['phone'] = 'blank';
     }
+// 生年月日
     if (empty($_POST['year']) || empty($_POST['month']) || empty($_POST['day'])) {
         $error['birthday'] = 'blank';
     }
+// 都道府県
     if (empty($_POST['prefecture']) && trim($_POST['prefecture']==='')) {
         $error['prefecture'] = 'blank';
     }
-    // エラーがない時
+
+// エラーがない時
     if (empty($error)) {
         // POSTをセッションにいれて入力確認画面へ
         $_SESSION['join'] = $_POST;
