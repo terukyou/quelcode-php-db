@@ -1,10 +1,32 @@
 <?php require('dbconnect.php');
 session_start();
 if (!empty($_POST)) {
-    // POSTをセッションにいれて入力確認画面へ
-    $_SESSION['join'] = $_POST;
-    header('Location:confirm.php');
-    exit();
+    // 項目に入力されてない場合
+    if ($_POST['name'] === '') {
+        $error['name'] = 'blank';
+    }
+    if ($_POST['phonetic'] === '') {
+        $error['name'] = 'blank';
+    }
+    if ($_POST['email'] === '') {
+        $error['name'] = 'blank';
+    }
+    if ($_POST['phone'] === '') {
+        $error['name'] = 'blank';
+    }
+    if ($_POST['year'] === '' || $_POST['month'] || $_POST['day']) {
+        $error['name'] = 'blank';
+    }
+    if ($_POST['prefecture'] === '') {
+        $error['name'] = 'blank';
+    }
+    // エラーがない時
+    if (empty($error)) {
+        // POSTをセッションにいれて入力確認画面へ
+        $_SESSION['join'] = $_POST;
+        header('Location:confirm.php');
+        exit();
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -33,19 +55,31 @@ if (!empty($_POST)) {
                 <label>お名前<span class="red">必須</span></label>
                 <input type="text" name="name" placeholder="山田太郎">
                 <p>漢字/フルネームでご記入ください</p>
+                <?php if ($error['name'] === 'blank') : ?>
+                    <p class="error">お名前は必須項目です</p>
+                <?php endif; ?>
             </div>
             <div>
                 <label>ふりがな<span class="red">必須</span></label>
                 <input type="text" name="phonetic" placeholder="やまだ たろう">
+                <?php if ($error['name'] === 'blank') : ?>
+                    <p class="error">ふりがなは必須項目です</p>
+                <?php endif; ?>
             </div>
             <div>
                 <label>メールアドレス<span class="red">必須</span></label>
                 <input type="email" name="email" placeholder="example@mail.com">
                 <p>確認メールが届きます。入力の間違いがないようにご確認ください。</p>
+                <?php if ($error['name'] === 'blank') : ?>
+                    <p class="error">メールアドレスは必須項目です</p>
+                <?php endif; ?>
             </div>
             <div>
                 <label>電話番号<span class="red">必須</span></label>
                 <input type="tel" name="phone" placeholder="09012345678">
+                <?php if ($error['name'] === 'blank') : ?>
+                    <p class="error">電話番号は必須項目です</p>
+                <?php endif; ?>
             </div>
             <div>
                 <label>生年月日<span class="red">必須</span></label>
@@ -223,6 +257,10 @@ if (!empty($_POST)) {
                     <option value="31">31</option>
                 </select>日
                 <p>満16歳以上の方を対象としています。</p>
+                <?php if ($error['name'] === 'blank') : ?>
+                    <p class="error">生年月日は必須項目です</p>
+                <?php endif; ?>
+                <?php ?>
             </div>
             <div>
                 <label>都道府県<span class="red">必須</span></label>
@@ -236,6 +274,9 @@ if (!empty($_POST)) {
                     ?>
                 </select>
                 <p>現在のお住まいの都道府県を選択ください。</p>
+                <?php if ($error['name'] === 'blank') : ?>
+                    <p class="error">都道府県は必須項目です</p>
+                <?php endif; ?>
             </div>
             <div>
                 <input type="submit" value="入力内容を確認">
