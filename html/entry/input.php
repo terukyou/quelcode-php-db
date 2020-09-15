@@ -20,24 +20,24 @@
             <h2>プレエントリーフォーム</h2>
             <p>応募はこちらから。日本で初めてISA(学費後払い)を採用したプログラミングスクール<br>の募集です。全国からのご応募をおまちしています。</p>
         </div>
-        <form action="#">
+        <form action="" method="post">
             <div>
                 <label>お名前<span class="red">必須</span></label>
-                <input type="text" placeholder="山田太郎">
+                <input type="text" name="name" placeholder="山田太郎">
                 <p>漢字/フルネームでご記入ください</p>
             </div>
             <div>
                 <label>ふりがな<span class="red">必須</span></label>
-                <input type="text" placeholder="やまだ たろう">
+                <input type="text" name="phonetic" placeholder="やまだ たろう">
             </div>
             <div>
                 <label>メールアドレス<span class="red">必須</span></label>
-                <input type="email" placeholder="example@mail.com">
+                <input type="email" name="email" placeholder="example@mail.com">
                 <p>確認メールが届きます。入力の間違いがないようにご確認ください。</p>
             </div>
             <div>
                 <label>電話番号<span class="red">必須</span></label>
-                <input type="tel" placeholder="09012345678">
+                <input type="tel" name="phone" placeholder="09012345678">
             </div>
             <div>
                 <label>生年月日<span class="red">必須</span></label>
@@ -218,20 +218,20 @@
             </div>
             <div>
                 <label>都道府県<span class="red">必須</span></label>
-                <select name="pref">
+                <select name="prefecture">
                     <option value="">選択してください</option>
                     <?php
-                    $prefectures = $db->query('SELECT name FROM prefecture');
+                    $prefectures = $db->query('SELECT * FROM prefecture');
                     while ($prefecture = $prefectures->fetch()) {
-                        print '<option value="{' . $prefecture['name'] . '}">' . $prefecture['name'] . '</option>';
+                        print '<option value="' . $prefecture['id'] . '">' . $prefecture['name'] . '</option>';
                     }
                     ?>
                 </select>
                 <p>現在のお住まいの都道府県を選択ください。</p>
             </div>
             <div>
-            <input type="submit" value="入力内容を確認">
-            <p><a href="#">プライバシーポリシー</a>をお読みの上、同意して送信してください。</p>
+                <input type="submit" value="入力内容を確認">
+                <p><a href="#">プライバシーポリシー</a>をお読みの上、同意して送信してください。</p>
             </div>
         </form>
     </div>
