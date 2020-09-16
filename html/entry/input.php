@@ -80,7 +80,7 @@ if (!empty($_POST)) {
                 <?php if ($error['name'] === 'blank') : ?>
                     <p class="error">お名前は必須項目です</p>
                 <?php endif; ?>
-                <?php if($error['name']):?>
+                <?php if($error['name'] === 'length'):?>
                     <p class="error">お名前は半角100文字以内で入力してください。</p>
                 <?php endif; ?>
             </div>
@@ -90,7 +90,7 @@ if (!empty($_POST)) {
                 <?php if ($error['phonetic'] === 'blank') : ?>
                     <p class="error">ふりがなは必須項目です</p>
                 <?php endif; ?>
-                <?php if($error['phonetic']):?>
+                <?php if($error['phonetic'] === 'length'):?>
                     <p class="error">ふりがなは半角100文字以内で入力してください。</p>
                 <?php endif; ?>
             </div>
@@ -101,7 +101,7 @@ if (!empty($_POST)) {
                 <?php if ($error['email'] === 'blank') : ?>
                     <p class="error">メールアドレスは必須項目です</p>
                 <?php endif; ?>
-                <?php if($error['phonetic']):?>
+                <?php if($error['phonetic'] === 'length'):?>
                     <p class="error">メールアドレスは半角100文字以内で入力してください。</p>
                 <?php endif; ?>
             </div>
