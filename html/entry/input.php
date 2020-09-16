@@ -18,17 +18,27 @@ if (!empty($_POST)) {
 // ふりがな
     if (empty($_POST['phonetic']) && trim($_POST['phonetic']==='')) {
         $error['phonetic'] = 'blank';
-    }elseif (strlen($_POST['phonetic'])>100) {
+    }elseif((preg_match('/^([ぁ-ん]| |　)+$/',$_POST['phonetic'])) === 0){
+    // ひらがな、半角スペース、全角スペース以外の時
+        $error['phonetic'] = 'match';
+    }
+    if (strlen($_POST['phonetic'])>100) {
     // 文字数が半角100文字以上の時
         $error['phonetic']='length';
     }
+    
 // メールアドレス
     if (empty($_POST['email']) && trim($_POST['email']==='')) {
         $error['email'] = 'blank';
-    }elseif (strlen($_POST['phonetic'])>100) {
+    }elseif((preg_match('/^([a-zA-Z0-9]\@[a-zA-Z0-9])$/',$_POST['email'])) === 0 && !empty($_POST['email'])){
+    // 半角@半角以外の時
+        $error['email'] = 'match';
+    }
+    if (strlen($_POST['email'])>100) {
     // 文字数が半角100文字以上の時
         $error['phonetic']='length';
     }
+    
 // 電話番号
     if (empty($_POST['phone']) && trim($_POST['phone']==='')) {
         $error['phone'] = 'blank';
@@ -74,6 +84,7 @@ if (!empty($_POST)) {
         </div>
         <form action="" method="post">
             <div>
+                <?php var_dump((preg_match('/^([ぁ-ん]| |　)$/',$_POST['phonetic'])));?>
                 <label>お名前<span class="red">必須</span></label>
                 <input type="text" name="name" placeholder="山田太郎" value="<?php echo htmlspecialchars($_POST['name'], ENT_QUOTES); ?>">
                 <p>漢字/フルネームでご記入ください</p>
@@ -93,6 +104,9 @@ if (!empty($_POST)) {
                 <?php if($error['phonetic'] === 'length'):?>
                     <p class="error">ふりがなは半角100文字以内で入力してください。</p>
                 <?php endif; ?>
+                <?php if($error['phonetic'] === 'match'):?>
+                    <p class="error">ふりがなはひらがなおよびスペースで入力してください</p>
+                <?php endif; ?>
             </div>
             <div>
                 <label>メールアドレス<span class="red">必須</span></label>
@@ -104,6 +118,10 @@ if (!empty($_POST)) {
                 <?php if($error['phonetic'] === 'length'):?>
                     <p class="error">メールアドレスは半角100文字以内で入力してください。</p>
                 <?php endif; ?>
+                <?php if($error['email'] === 'match'):?>
+                    <p class="error">emailは</p>
+                <?php endif; ?>
+
             </div>
             <div>
                 <label>電話番号<span class="red">必須</span></label>
