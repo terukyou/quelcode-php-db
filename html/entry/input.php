@@ -91,7 +91,9 @@ if (!empty($_POST)) {
         </div>
         <form action="" method="post">
             <div>
-            <?php var_dump((preg_match('/^([ぁ-ん]| |　)$/',$_POST['phonetic'])));?>
+                <?php if(!empty($error)):?>
+                    <p class="error-message">正しく入力されていない項目があります</p>            
+                <?php endif;?>
                 <label>お名前<span class="red">必須</span></label>
                 <input type="text" name="name" placeholder="山田太郎" value="<?php echo htmlspecialchars($_POST['name'], ENT_QUOTES); ?>">
                 <p>漢字/フルネームでご記入ください</p>
