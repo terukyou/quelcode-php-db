@@ -31,7 +31,7 @@ if (!empty($_POST)) {
     if (empty($_POST['email']) && trim($_POST['email']==='')) {
         $error['email'] = 'blank';
     }elseif((preg_match('/^([a-zA-Z0-9]\@[a-zA-Z0-9])$/',$_POST['email'])) === 0 && !empty($_POST['email'])){
-    // 半角@半角以外の時
+        // 半角@半角以外の時
         $error['email'] = 'match';
     }
     if (strlen($_POST['email'])>100) {
@@ -42,6 +42,9 @@ if (!empty($_POST)) {
 // 電話番号
     if (empty($_POST['phone']) && trim($_POST['phone']==='')) {
         $error['phone'] = 'blank';
+    }elseif((preg_match('/0[0-9]{9,10}/',$_POST['phone'])) === 0){
+        // 0から始まる10、11桁の数字
+        $error['phone']='match';
     }
 // 生年月日
     if (empty($_POST['year']) || empty($_POST['month']) || empty($_POST['day'])) {
@@ -128,6 +131,9 @@ if (!empty($_POST)) {
                 <input type="tel" name="phone" placeholder="09012345678" value="<?php echo htmlspecialchars($_POST['phone'], ENT_QUOTES); ?>">
                 <?php if ($error['phone'] === 'blank') : ?>
                     <p class="error">電話番号は必須項目です</p>
+                <?php endif; ?>
+                <?php if ($error['phone'] === 'match') : ?>
+                    <p class="error">電話番号として正しくありません</p>
                 <?php endif; ?>
             </div>
             <div>
