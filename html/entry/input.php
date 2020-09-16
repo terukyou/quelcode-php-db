@@ -49,7 +49,11 @@ if (!empty($_POST)) {
 // 生年月日
     if (empty($_POST['year']) || empty($_POST['month']) || empty($_POST['day'])) {
         $error['birthday'] = 'blank';
+    }elseif((checkdate($_POST['month'], $_POST['day'], $_POST['year'])) === false){
+        // 不正な日付であった場合
+        $error['birthday'] ='uncertainty';
     }
+
 // 都道府県
     if (empty($_POST['prefecture']) || (trim($_POST['prefecture'])) ==='') {
         $error['prefecture'] = 'blank';
@@ -314,6 +318,9 @@ if (!empty($_POST)) {
                 <p>満16歳以上の方を対象としています。</p>
                 <?php if ($error['birthday'] === 'blank') : ?>
                     <p class="error">生年月日は必須項目です</p>
+                <?php endif; ?>
+                <?php if ($error['birthday'] === 'uncertainty') : ?>
+                    <p class="error">日付として正しくありません</p>
                 <?php endif; ?>
                 <?php ?>
             </div>
