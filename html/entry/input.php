@@ -67,6 +67,10 @@ if (!empty($_POST)) {
         exit();
     }
 }
+// 確認画面から戻った時入力画面を書き直す
+if($_REQUEST['action'] === 'rewrite') {
+    $_POST = $_SESSION['join'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
