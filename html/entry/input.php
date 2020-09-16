@@ -9,14 +9,14 @@ function selected($key,$option)
 if (!empty($_POST)) {
     // 項目に入力されてない場合
 // 名前
-    if (empty($_POST['name']) && trim($_POST['name'] === '')) {
+    if (empty($_POST['name']) || (trim($_POST['name'])) ==='') {
         $error['name'] = 'blank';
     }elseif (strlen($_POST['name'])>100) {
     // 文字数が半角100文字以上の時
         $error['name']='length';
     }
 // ふりがな
-    if (empty($_POST['phonetic']) && trim($_POST['phonetic']==='')) {
+    if (empty($_POST['phonetic']) || (trim($_POST['phonetic'])) ==='') {
         $error['phonetic'] = 'blank';
     }elseif((preg_match('/^([ぁ-ん]| |　)+$/',$_POST['phonetic'])) === 0){
     // ひらがな、半角スペース、全角スペース以外の時
@@ -28,9 +28,9 @@ if (!empty($_POST)) {
     }
     
 // メールアドレス
-    if (empty($_POST['email']) && trim($_POST['email']==='')) {
+    if (empty($_POST['email']) || (trim($_POST['email'])) ==='') {
         $error['email'] = 'blank';
-    }elseif((preg_match('/^([a-zA-Z0-9]\@[a-zA-Z0-9])$/',$_POST['email'])) === 0 && !empty($_POST['email'])){
+    }elseif((preg_match('/^([a-zA-Z0-9]\@[a-zA-Z0-9])$/',$_POST['email'])) === 0){
         // 半角@半角以外の時
         $error['email'] = 'match';
     }
@@ -40,7 +40,7 @@ if (!empty($_POST)) {
     }
     
 // 電話番号
-    if (empty($_POST['phone']) && trim($_POST['phone']==='')) {
+    if (empty($_POST['phone']) || (trim($_POST['phone'])) ==='') {
         $error['phone'] = 'blank';
     }elseif((preg_match('/0[0-9]{9,10}/',$_POST['phone'])) === 0){
         // 0から始まる10、11桁の数字
@@ -51,7 +51,7 @@ if (!empty($_POST)) {
         $error['birthday'] = 'blank';
     }
 // 都道府県
-    if (empty($_POST['prefecture']) && trim($_POST['prefecture']==='')) {
+    if (empty($_POST['prefecture']) || (trim($_POST['prefecture'])) ==='') {
         $error['prefecture'] = 'blank';
     }
 
@@ -87,7 +87,7 @@ if (!empty($_POST)) {
         </div>
         <form action="" method="post">
             <div>
-                <?php var_dump((preg_match('/^([ぁ-ん]| |　)$/',$_POST['phonetic'])));?>
+            <?php var_dump((preg_match('/^([ぁ-ん]| |　)$/',$_POST['phonetic'])));?>
                 <label>お名前<span class="red">必須</span></label>
                 <input type="text" name="name" placeholder="山田太郎" value="<?php echo htmlspecialchars($_POST['name'], ENT_QUOTES); ?>">
                 <p>漢字/フルネームでご記入ください</p>
