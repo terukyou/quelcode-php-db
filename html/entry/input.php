@@ -344,7 +344,7 @@ if (!empty($_POST)) {
             </div>
             <div>
                 <input type="submit" value="入力内容を確認">
-                <p><a href="#">プライバシーポリシー</a>をお読みの上、同意して送信してください。</p>
+                <p><a href="https://labot.inc/privacy-policy/">プライバシーポリシー</a>をお読みの上、同意して送信してください。</p>
             </div>
         </form>
     </div>
