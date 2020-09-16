@@ -24,7 +24,7 @@ if (!empty($_POST)) {
     }
     if (strlen($_POST['phonetic'])>100) {
     // 文字数が半角100文字以上の時
-        $error['phonetic']='length';
+        $error['phonetic_length']='length';
     }
     
 // メールアドレス
@@ -36,7 +36,7 @@ if (!empty($_POST)) {
     }
     if (strlen($_POST['email'])>100) {
     // 文字数が半角100文字以上の時
-        $error['phonetic']='length';
+        $error['email_length']='length';
     }
     
 // 電話番号
@@ -101,7 +101,7 @@ if (!empty($_POST)) {
                 <?php if ($error['phonetic'] === 'blank') : ?>
                     <p class="error">ふりがなは必須項目です</p>
                 <?php endif; ?>
-                <?php if($error['phonetic'] === 'length'):?>
+                <?php if($error['phonetic_length'] === 'length'):?>
                     <p class="error">ふりがなは半角100文字以内で入力してください。</p>
                 <?php endif; ?>
                 <?php if($error['phonetic'] === 'match'):?>
@@ -115,7 +115,7 @@ if (!empty($_POST)) {
                 <?php if ($error['email'] === 'blank') : ?>
                     <p class="error">メールアドレスは必須項目です</p>
                 <?php endif; ?>
-                <?php if($error['phonetic'] === 'length'):?>
+                <?php if($error['email_length'] === 'length'):?>
                     <p class="error">メールアドレスは半角100文字以内で入力してください。</p>
                 <?php endif; ?>
                 <?php if($error['email'] === 'match'):?>
