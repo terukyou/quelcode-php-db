@@ -336,10 +336,9 @@ if($_REQUEST['action'] === 'rewrite') {
                     <option value="">選択してください</option>
                     <?php
                     $prefectures = $db->query('SELECT * FROM prefecture');
-                    while ($prefecture = $prefectures->fetch()) {
-                        print '<option value="' . $prefecture['id'] . '">' . $prefecture['name'] . '</option>';
-                    }
-                    ?>
+                    while ($prefecture = $prefectures->fetch()):?>
+                        <option value="<?php echo $prefecture['id']?>" <?php selected('prefecture',$prefecture['id']) ?>><?php echo $prefecture['name']; ?></option>
+                    <?php endwhile; ?>
                 </select>
                 <p>現在のお住まいの都道府県を選択ください。</p>
                 <?php if ($error['prefecture'] === 'blank') : ?>
