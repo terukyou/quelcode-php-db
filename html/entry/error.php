@@ -1,6 +1,10 @@
-<?php require('dbconnect.php');
-$_SESSION = array();
-session_destroy();
+<?php
+require('dbconnect.php');
+// セッションがあった場合削除
+if(!empty($_SESSION)){
+    $_SESSION = array();
+    session_destroy();
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
