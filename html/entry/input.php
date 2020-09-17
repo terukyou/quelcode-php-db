@@ -9,14 +9,14 @@ function selected($key,$option)
 if (!empty($_POST)) {
     // 項目に入力されてない場合
 // 名前
-    if (empty($_POST['name']) || (trim($_POST['name'])) ==='') {
+    if (empty(trim($_POST['name']))) {
         $error['name'] = 'blank';
     }elseif (strlen($_POST['name'])>100) {
     // 文字数が半角100文字以上の時
         $error['name']='length';
     }
 // ふりがな
-    if (empty($_POST['phonetic']) || (trim($_POST['phonetic'])) ==='') {
+    if (empty(trim($_POST['phonetic']))) {
         $error['phonetic'] = 'blank';
     }elseif((preg_match('/^([ぁ-ん]| |　)+$/',$_POST['phonetic'])) === 0){
     // ひらがな、半角スペース、全角スペース以外の時
@@ -33,7 +33,7 @@ if (!empty($_POST)) {
     $strlen = mb_strlen($changeEmail);
 
     $strwidth = mb_strwidth($_POST['email']);
-    if (empty($_POST['email']) || (trim($_POST['email'])) ==='') {
+    if (empty(trim($_POST['email']))) {
         $error['email'] = 'blank';
     }elseif($strlen !== $strwidth || preg_match('/^(?=.*@).*$/',$_POST['email']) === 0){
         // 半角変換したものと変換元の長さが一致しないor一部に「＠」が含まれていない時
@@ -45,22 +45,22 @@ if (!empty($_POST)) {
     }
     
 // 電話番号
-    if (empty($_POST['phone']) || (trim($_POST['phone'])) ==='') {
+    if (empty(trim($_POST['phone']))) {
         $error['phone'] = 'blank';
     }elseif((preg_match('/0[0-9]{9,10}/',$_POST['phone'])) === 0){
         // 0から始まる10、11桁の数字
         $error['phone']='match';
     }
 // 生年月日
-    if (empty($_POST['year']) || empty($_POST['month']) || empty($_POST['day'])) {
-        $error['birthday'] = 'blank';
+    if (empty(trim($_POST['year'])) || empty(trim($_POST['month'])) || empty(trim($_POST['day']))) {
+    $error['birthday'] = 'blank';
     }elseif((checkdate($_POST['month'], $_POST['day'], $_POST['year'])) === false){
         // 不正な日付であった場合
         $error['birthday'] ='uncertainty';
     }
 
 // 都道府県
-    if (empty($_POST['prefecture']) || (trim($_POST['prefecture'])) ==='') {
+    if (empty(trim($_POST['prefecture']))) {
         $error['prefecture'] = 'blank';
     }
 
