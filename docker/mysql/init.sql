@@ -9,7 +9,7 @@ CREATE TABLE users (
     `phonetic` VARCHAR(100) NOT NULL,
     `email` VARCHAR(100) NOT NULL,
     `phone` VARCHAR(11) NOT NULL,
-    `birthday` DATE NOT NULL,
+    `birthday` VARCHAR(10) NOT NULL,
     `prefecture_id` INT(11) NOT NULL,
     `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `modified_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
