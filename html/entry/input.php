@@ -281,15 +281,15 @@ if($_REQUEST['action'] === 'rewrite') {
                 </select>年
                 <select name="month">
                     <option value="">-</option>
-                    <option value="1" <?php selected('month','01'); ?>>01</option>
-                    <option value="2" <?php selected('month','02'); ?>>02</option>
-                    <option value="3" <?php selected('month','03'); ?>>03</option>
-                    <option value="4" <?php selected('month','04'); ?>>04</option>
-                    <option value="5" <?php selected('month','05'); ?>>05</option>
-                    <option value="6" <?php selected('month','06'); ?>>06</option>
-                    <option value="7" <?php selected('month','07'); ?>>07</option>
-                    <option value="8" <?php selected('month','08'); ?>>08</option>
-                    <option value="9" <?php selected('month','09'); ?>>09</option>
+                    <option value="01" <?php selected('month','01'); ?>>01</option>
+                    <option value="02" <?php selected('month','02'); ?>>02</option>
+                    <option value="03" <?php selected('month','03'); ?>>03</option>
+                    <option value="04" <?php selected('month','04'); ?>>04</option>
+                    <option value="05" <?php selected('month','05'); ?>>05</option>
+                    <option value="06" <?php selected('month','06'); ?>>06</option>
+                    <option value="07" <?php selected('month','07'); ?>>07</option>
+                    <option value="08" <?php selected('month','08'); ?>>08</option>
+                    <option value="09" <?php selected('month','09'); ?>>09</option>
                     <option value="10" <?php selected('month','10'); ?>>10</option>
                     <option value="11" <?php selected('month','11'); ?>>11</option>
                     <option value="12" <?php selected('month','12'); ?>>12</option>
