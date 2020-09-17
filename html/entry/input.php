@@ -1,13 +1,5 @@
 <?php require('dbconnect.php');
 session_start();
-// セレクトタグの選択した内容をselectedにする
-function selected($key,$option)
-{
-    echo array_key_exists($key, $_POST) && $_POST[$key] == $option ? 'selected' : '';
-}
-function h($value){
-    return htmlspecialchars($value, ENT_QUOTES);
-}
 if (!empty($_POST)) {
     // 項目に入力されてない場合
 // 名前

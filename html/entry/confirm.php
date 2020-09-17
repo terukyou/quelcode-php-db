@@ -32,28 +32,28 @@ if (empty($_SESSION['join'])) {
             <form action="complete.php" method="post">
                 <div>
                     <label>お名前<span class="red">必須</span></label>
-                    <p><?php echo htmlspecialchars($_SESSION['join']['name'], ENT_QUOTES); ?></p>
+                    <p><?php echo h($_SESSION['join']['name']); ?></p>
 
                 </div>
 
                 <div>
                     <label>ふりがな<span class="red">必須</span></label>
-                    <p><?php echo htmlspecialchars($_SESSION['join']['phonetic'], ENT_QUOTES); ?></p>
+                    <p><?php echo h($_SESSION['join']['phonetic']); ?></p>
                 </div>
 
                 <div>
                     <label>メールアドレス<span class="red">必須</span></label>
-                    <p><?php echo htmlspecialchars($_SESSION['join']['email'], ENT_QUOTES); ?></p>
+                    <p><?php echo h($_SESSION['join']['email']); ?></p>
                 </div>
 
                 <div>
                     <label>電話番号<span class="red">必須</span></label>
-                    <p><?php echo htmlspecialchars($_SESSION['join']['phone'], ENT_QUOTES); ?></p>
+                    <p><?php echo h($_SESSION['join']['phone']); ?></p>
                 </div>
 
                 <div>
                     <label>生年月日<span class="red">必須</span></label>
-                    <p><?php echo htmlspecialchars($_SESSION['join']['year'] . '年' . $_SESSION['join']['month'] . '月' . $_SESSION['join']['day'] . '日', ENT_QUOTES); ?></p>
+                    <p><?php echo h($_SESSION['join']['year'] . '年' . $_SESSION['join']['month'] . '月' . $_SESSION['join']['day'] . '日'); ?></p>
                 </div>
 
                 <div>
@@ -63,7 +63,7 @@ if (empty($_SESSION['join'])) {
                         $prefectures->bindParam(1, $_SESSION['join']['prefecture'], PDO::PARAM_INT);
                         $prefectures->execute();
                         $prefecture = $prefectures->fetch();
-                        echo htmlspecialchars($prefecture['name'], ENT_QUOTES); ?></p>
+                        echo h($prefecture['name']); ?></p>
                 </div>
                 <div class="fifty">
                     <div>
