@@ -122,7 +122,7 @@ if ($_REQUEST['action'] === 'rewrite') {
             </div>
             <div>
                 <label>メールアドレス<span class="red">必須</span></label>
-                <input type="email" name="email" placeholder="example@mail.com" value="<?php echo h($_POST['email']); ?>">
+                <input type="text" name="email" placeholder="example@mail.com" value="<?php echo h($_POST['email']); ?>">
                 <p>確認メールが届きます。入力の間違いがないようにご確認ください。</p>
                 <?php if ($error['email'] === 'blank') : ?>
                     <p class="error">メールアドレスは必須項目です</p>
@@ -137,7 +137,7 @@ if ($_REQUEST['action'] === 'rewrite') {
             </div>
             <div>
                 <label>電話番号<span class="red">必須</span></label>
-                <input type="tel" name="phone" placeholder="09012345678" value="<?php echo h($_POST['phone']); ?>">
+                <input type="text" name="phone" placeholder="09012345678" value="<?php echo h($_POST['phone']); ?>">
                 <?php if ($error['phone'] === 'blank') : ?>
                     <p class="error">電話番号は必須項目です</p>
                 <?php endif; ?>
