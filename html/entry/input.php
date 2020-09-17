@@ -28,10 +28,15 @@ if (!empty($_POST)) {
     }
     
 // メールアドレス
+    // メールアドレスを半角文字に変換して変換元とのお互いの長さを変数に入れる
+    $changeEmail=mb_convert_kana($_POST['email']);
+    $strlen = mb_strlen($changeEmail);
+
+    $strwidth = mb_strwidth($_POST['email']);
     if (empty($_POST['email']) || (trim($_POST['email'])) ==='') {
         $error['email'] = 'blank';
-    }elseif((preg_match('/^([a-zA-Z0-9]\@[a-zA-Z0-9])$/',$_POST['email'])) === 0){
-        // 半角@半角以外の時
+    }elseif($strlen !== $strwidth || preg_match('/^(?=.*@).*$/',$_POST['email']) === 0){
+        // 半角変換したものと変換元の長さが一致しないor一部に「＠」が含まれていない時
         $error['email'] = 'match';
     }
     if (strlen($_POST['email'])>100) {
