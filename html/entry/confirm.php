@@ -65,9 +65,15 @@ if (empty($_SESSION['join'])) {
                         $prefecture = $prefectures->fetch();
                         echo htmlspecialchars($prefecture['name'], ENT_QUOTES); ?></p>
                 </div>
-                <a href="input.php?action=rewrite">戻る</a>
-                <input type="hidden" name="action" value="submit">
-                <input type="submit" value="送信">
+                <div class="fifty">
+                    <div>
+                        <a href="input.php?action=rewrite">戻る</a>
+                    </div>
+                    <div>
+                        <input type="hidden" name="action" value="submit">
+                        <input type="submit" value="送信">
+                    </div>
+                </div>
             </form>
 
         </div>
