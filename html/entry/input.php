@@ -100,7 +100,7 @@ if($_REQUEST['action'] === 'rewrite') {
             <h2>プレエントリーフォーム</h2>
             <p>応募はこちらから。日本で初めてISA(学費後払い)を採用したプログラミングスクール<br>の募集です。全国からのご応募をおまちしています。</p>
         </div>
-        <form action="" method="post">
+        <form action="input.php" method="post">
             <div>
                 <?php if(!empty($error)):?>
                     <p class="error-message">正しく入力されていない項目があります</p>            
