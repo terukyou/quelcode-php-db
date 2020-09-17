@@ -5,7 +5,9 @@ function selected($key,$option)
 {
     echo array_key_exists($key, $_POST) && $_POST[$key] == $option ? 'selected' : '';
 }
-
+function h($value){
+    return htmlspecialchars($value, ENT_QUOTES);
+}
 if (!empty($_POST)) {
     // 項目に入力されてない場合
 // 名前
@@ -104,7 +106,7 @@ if($_REQUEST['action'] === 'rewrite') {
                     <p class="error-message">正しく入力されていない項目があります</p>            
                 <?php endif;?>
                 <label>お名前<span class="red">必須</span></label>
-                <input type="text" name="name" placeholder="山田太郎" value="<?php echo htmlspecialchars($_POST['name'], ENT_QUOTES); ?>">
+                <input type="text" name="name" placeholder="山田太郎" value="<?php echo h($_POST['name']); ?>">
                 <p>漢字/フルネームでご記入ください</p>
                 <?php if ($error['name'] === 'blank') : ?>
                     <p class="error">お名前は必須項目です</p>
@@ -115,7 +117,7 @@ if($_REQUEST['action'] === 'rewrite') {
             </div>
             <div>
                 <label>ふりがな<span class="red">必須</span></label>
-                <input type="text" name="phonetic" placeholder="やまだ たろう" value="<?php echo htmlspecialchars($_POST['phonetic'], ENT_QUOTES); ?>">
+                <input type="text" name="phonetic" placeholder="やまだ たろう" value="<?php echo h($_POST['phonetic']); ?>">
                 <?php if ($error['phonetic'] === 'blank') : ?>
                     <p class="error">ふりがなは必須入力です</p>
                 <?php endif; ?>
@@ -128,7 +130,7 @@ if($_REQUEST['action'] === 'rewrite') {
             </div>
             <div>
                 <label>メールアドレス<span class="red">必須</span></label>
-                <input type="email" name="email" placeholder="example@mail.com" value="<?php echo htmlspecialchars($_POST['email'], ENT_QUOTES); ?>">
+                <input type="email" name="email" placeholder="example@mail.com" value="<?php echo h($_POST['email']); ?>">
                 <p>確認メールが届きます。入力の間違いがないようにご確認ください。</p>
                 <?php if ($error['email'] === 'blank') : ?>
                     <p class="error">メールアドレスは必須項目です</p>
@@ -143,7 +145,7 @@ if($_REQUEST['action'] === 'rewrite') {
             </div>
             <div>
                 <label>電話番号<span class="red">必須</span></label>
-                <input type="tel" name="phone" placeholder="09012345678" value="<?php echo htmlspecialchars($_POST['phone'], ENT_QUOTES); ?>">
+                <input type="tel" name="phone" placeholder="09012345678" value="<?php echo h($_POST['phone']); ?>">
                 <?php if ($error['phone'] === 'blank') : ?>
                     <p class="error">電話番号は必須項目です</p>
                 <?php endif; ?>
