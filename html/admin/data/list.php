@@ -9,6 +9,10 @@ if (!empty($_GET)) {
         $searches->bindValue(2, '%' . $_GET['name'] . '%');
         $searches->bindValue(3, '%' . $_GET['name'] . '%');
         $searches->execute();
+    } elseif (!empty($_GET['name'] && (int)$_GET['status'] === 0)) {
+        // 名前だけ
+        $searches = $db->prepare('SELECT u.id, created_at, u.name as user_name, phonetic, prefecture.name as prefecture_name, birthday, s.name as status_name FROM users u, status s,prefecture WHERE (u.name LIKE ? OR phonetic LIKE ?) AND u.prefecture_id=prefecture.id AND u.status_id=s.id');
+        $searches->execute(array('%' . $_GET['name'] . '%', '%' . $_GET['name'] . '%'));
     }
 }
 ?>
