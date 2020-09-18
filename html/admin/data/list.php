@@ -21,8 +21,8 @@ if (!empty($_GET)) {
         $searches = $db->query('SELECT u.id, created_at, u.name as user_name, phonetic, prefecture.name as prefecture_name, birthday, s.name as status_name FROM users u, status s,prefecture WHERE u.prefecture_id=prefecture.id AND u.status_id=s.id ORDER BY u.id ASC');
         $searches->execute();    
     }
-    
-    if (empty($searches->fetch())) {
+    $search_information = $searches->fetchAll();
+    if (count($search_information) === 0) {
         $search_result = 0;
     } else {
         $search_result = 1;
@@ -31,8 +31,8 @@ if (!empty($_GET)) {
     // 検索されていない場合
     $searches = $db->query('SELECT u.id, created_at, u.name as user_name, phonetic, prefecture.name as prefecture_name, birthday, s.name as status_name FROM users u, status s,prefecture WHERE u.prefecture_id=prefecture.id AND u.status_id=s.id ORDER BY u.id ASC');
     $searches->execute();
-
-    if (empty($searches->fetch())) {
+    $search_information = $searches->fetchAll();
+    if (count($search_information) === 0) {
         $search_result = -1;
     } else {
         $search_result = 1;
@@ -93,7 +93,7 @@ if (!empty($_GET)) {
                     <td>ステータス</td>
                     <td>詳細</td>
                 </tr>
-                <?php while ($search = $searches->fetch()) : ?>
+                <?php foreach ($search_information as $search) : ?>
                     <tr>
                         <td><?php echo h($search['id']); ?></td>
                         <td>
@@ -119,7 +119,7 @@ if (!empty($_GET)) {
                         </td>                        <td><?php echo h($search['status_name']); ?></td>
                         <td><a href="detail.php?id=<?php echo h($search['id']); ?>">詳細</a></td>
                     </tr>
-                <?php endwhile; ?>
+                <?php endforeach; ?>
             </div>
         </table>
         <?php else:?>
