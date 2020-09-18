@@ -16,9 +16,13 @@ if (!empty($_GET)) {
         $searches = $db->prepare('SELECT u.id, created_at, u.name as user_name, phonetic, prefecture.name as prefecture_name, birthday, s.name as status_name FROM users u, status s,prefecture WHERE status_id=? AND u.prefecture_id=prefecture.id AND u.status_id=s.id');
         $searches->bindValue(1, $_GET['status'], PDO::PARAM_INT);
         $searches->execute();
+    }elseif(empty($_GET['name']) && (int)$_GET['status'] === 0){
+        // ステータス「すべて」だけ検索した場合
+        $searches = $db->query('SELECT u.id, created_at, u.name as user_name, phonetic, prefecture.name as prefecture_name, birthday, s.name as status_name FROM users u, status s,prefecture WHERE u.prefecture_id=prefecture.id AND u.status_id=s.id ORDER BY u.id ASC');
+        $searches->execute();    
     }
-} elseif (empty($_GET) || (empty($_GET['name']) && (int)$_GET['status'] === 0)) {
-    // 検索されていない場合orステータス「すべて」を検索した場合
+} elseif (empty($_GET)) {
+    // 検索されていない場合
     $searches = $db->query('SELECT u.id, created_at, u.name as user_name, phonetic, prefecture.name as prefecture_name, birthday, s.name as status_name FROM users u, status s,prefecture WHERE u.prefecture_id=prefecture.id AND u.status_id=s.id ORDER BY u.id ASC');
     $searches->execute();
 }
@@ -46,7 +50,7 @@ if (!empty($_GET)) {
                 <p>検索</p>
                 <label>名前</label>
                 <input type="text" name="name">
-
+                
                 <label>ステータス</label>
                 <select name="status">
                     <option value="0">すべて</option>
