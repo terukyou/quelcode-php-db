@@ -1,3 +1,4 @@
+<?php require('../../entry/dbconnect.php');?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -25,6 +26,15 @@
                 <label>ステータス</label>
                 <select name="status">
                     <option value="0">すべて</option>
+                    <?php
+                    $statuses = $db->query('SELECT * FROM status');
+                    while ($status = $statuses->fetch()) :
+                    ?>
+                        <option value="<?php echo h($status['id']); ?>" <?php selected('status', $status['id']); ?>>
+                            <?php echo h($status['name']); ?>
+                        </option>
+                    <?php endwhile; ?>
+
                 </select>
                 <input type="submit" value="検索">
             </form>
