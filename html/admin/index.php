@@ -1,3 +1,8 @@
+<?php
+require('../entry/dbconnect.php');
+// ステータスID、ステータス名、件数を抽出
+$status = $db->query('SELECT count(*) AS cnt, status_id ,status.name AS status_name FROM users,status WHERE users.status_id=status.id GROUP BY status_id');
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -23,9 +28,20 @@
                     <td>ステータス</td>
                     <td>件数</td>
                 </tr>
+                <?php while ($statu = $status->fetch()) : ?>
+                    <tr>
+                        <td> <a href=""><?php echo h($statu['status_name']); ?></a></td>
+                        <td><?php echo h($statu['cnt']); ?></td>
+                    </tr>
+                <?php endwhile; ?>
                 <tr>
                     <td>合計</td>
                     <td>
+                    <?php
+                    $sums = $db->query('SELECT COUNT(id) AS cnt FROM users');
+                    $sum = $sums->fetch();
+                    echo h($sum['cnt']);
+                    ?>
                     </td>
                 </tr>
             </div>
