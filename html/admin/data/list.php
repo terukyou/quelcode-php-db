@@ -52,7 +52,7 @@ if (!empty($_GET)) {
                     $statuses = $db->query('SELECT * FROM status');
                     while ($status = $statuses->fetch()) :
                     ?>
-                        <option value="<?php echo h($status['id']); ?>" <?php selected('status', $status['id']); ?>>
+                        <option value="<?php echo h($status['id']); ?>" <?php selectedGet('status', $status['id']); ?>>
                             <?php echo h($status['name']); ?>
                         </option>
                     <?php endwhile; ?>

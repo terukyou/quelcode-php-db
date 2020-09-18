@@ -9,6 +9,10 @@ function selected($key, $option)
 {
     echo array_key_exists($key, $_POST) && $_POST[$key] == $option ? 'selected' : '';
 }
+function selectedGet($key, $option)
+{
+    echo array_key_exists($key, $_GET) && $_GET[$key] == $option ? 'selected' : '';
+}
 function h($value)
 {
     return htmlspecialchars($value, ENT_QUOTES);
