@@ -1,6 +1,4 @@
 <?php require('../../entry/dbconnect.php');
-$searches = $db->query('SELECT u.id, created_at, u.name as user_name, phonetic, prefecture.name as prefecture_name, birthday, s.name as status_name FROM users u, status s,prefecture WHERE u.prefecture_id=prefecture.id AND u.status_id=s.id ORDER BY u.id ASC');
-$searches->execute();
 if (!empty($_GET)) {
     // 名前とステータスどっちも
     if (!empty($_GET['name']) && (int)$_GET['status'] > 0) {
@@ -19,6 +17,10 @@ if (!empty($_GET)) {
         $searches->bindValue(1, $_GET['status'], PDO::PARAM_INT);
         $searches->execute();
     }
+} elseif (empty($_GET) || (empty($_GET['name']) && (int)$_GET['status'] === 0)) {
+    // 検索されていない場合orステータス「すべて」を検索した場合
+    $searches = $db->query('SELECT u.id, created_at, u.name as user_name, phonetic, prefecture.name as prefecture_name, birthday, s.name as status_name FROM users u, status s,prefecture WHERE u.prefecture_id=prefecture.id AND u.status_id=s.id ORDER BY u.id ASC');
+    $searches->execute();
 }
 ?>
 <!DOCTYPE html>
