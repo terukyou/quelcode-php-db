@@ -65,8 +65,14 @@ $searches->execute();
                         </td>
                         <td><?php echo h($search['created_at']); ?></td>
                         <td><?php echo h($search['prefecture_name']); ?></td>
-                        <td><?php echo h($search['birthday']); ?></td>
-                        <td><?php echo h($search['status_name']); ?></td>
+                        <td>
+                        <?php
+                        // 誕生日の日付から年齢を計算 
+                        $now = date("Ymd");
+                        $birthday = str_replace("/", "", $search['birthday']);
+                        echo floor(($now - $birthday) / 10000) . '歳';
+                        ?>
+                        </td>                        <td><?php echo h($search['status_name']); ?></td>
                         <td><a href="">詳細</a></td>
                     </tr>
                 <?php endwhile; ?>
