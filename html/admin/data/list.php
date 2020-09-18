@@ -1,4 +1,7 @@
-<?php require('../../entry/dbconnect.php');?>
+<?php require('../../entry/dbconnect.php');
+$searches = $db->query('SELECT u.id, created_at, u.name as user_name, phonetic, prefecture.name as prefecture_name, birthday, s.name as status_name FROM users u, status s,prefecture WHERE u.prefecture_id=prefecture.id AND u.status_id=s.id ORDER BY u.id ASC');
+$searches->execute();
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -51,6 +54,22 @@
                     <td>ステータス</td>
                     <td>詳細</td>
                 </tr>
+                <?php while ($search = $searches->fetch()) : ?>
+                    <tr>
+                        <td><?php echo h($search['id']); ?></td>
+                        <td>
+                            <ruby>
+                                <rb><?php echo h($search['user_name']); ?></rb>
+                                <rt><?php echo h($search['phonetic']); ?></rt>
+                            </ruby>
+                        </td>
+                        <td><?php echo h($search['created_at']); ?></td>
+                        <td><?php echo h($search['prefecture_name']); ?></td>
+                        <td><?php echo h($search['birthday']); ?></td>
+                        <td><?php echo h($search['status_name']); ?></td>
+                        <td><a href="">詳細</a></td>
+                    </tr>
+                <?php endwhile; ?>
             </div>
         </table>
     </section>
