@@ -21,10 +21,22 @@ if (!empty($_GET)) {
         $searches = $db->query('SELECT u.id, created_at, u.name as user_name, phonetic, prefecture.name as prefecture_name, birthday, s.name as status_name FROM users u, status s,prefecture WHERE u.prefecture_id=prefecture.id AND u.status_id=s.id ORDER BY u.id ASC');
         $searches->execute();    
     }
+    
+    if (empty($searches->fetch())) {
+        $search_result = 0;
+    } else {
+        $search_result = 1;
+    }
 } elseif (empty($_GET)) {
     // 検索されていない場合
     $searches = $db->query('SELECT u.id, created_at, u.name as user_name, phonetic, prefecture.name as prefecture_name, birthday, s.name as status_name FROM users u, status s,prefecture WHERE u.prefecture_id=prefecture.id AND u.status_id=s.id ORDER BY u.id ASC');
     $searches->execute();
+
+    if (empty($searches->fetch())) {
+        $search_result = -1;
+    } else {
+        $search_result = 1;
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -45,6 +57,7 @@ if (!empty($_GET)) {
     </header>
     <section>
         <h2>申し込み一覧</h2>
+        <?php if($search_result > -1):?>
         <div class="serch">
             <form action="" method="get">
                 <p>検索</p>
@@ -67,6 +80,7 @@ if (!empty($_GET)) {
                 <input type="submit" value="検索">
             </form>
         </div>
+        <?php if ($search_result > 0) : ?>
         <table border="">
             <div class="states">
                 <tr>
@@ -108,6 +122,12 @@ if (!empty($_GET)) {
                 <?php endwhile; ?>
             </div>
         </table>
+        <?php else:?>
+            <p>該当の検索条件では申込データがありません。</p>
+        <?php endif;?>
+    <?php else:?>
+        <p>申し込みデータがありません</p>
+        <?php endif;?>
     </section>
     </main>
 </body>
