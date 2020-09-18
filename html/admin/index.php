@@ -30,7 +30,7 @@ $status = $db->query('SELECT count(*) AS cnt, status_id ,status.name AS status_n
                 </tr>
                 <?php while ($statu = $status->fetch()) : ?>
                     <tr>
-                        <td> <a href=""><?php echo h($statu['status_name']); ?></a></td>
+                        <td> <a href="data/list.php?status=<?php echo h($statu['status_id']) ?>"><?php echo h($statu['status_name']); ?></a></td>
                         <td><?php echo h($statu['cnt']); ?></td>
                     </tr>
                 <?php endwhile; ?>
