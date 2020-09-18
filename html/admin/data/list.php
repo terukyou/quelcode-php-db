@@ -73,7 +73,7 @@ $searches->execute();
                         echo floor(($now - $birthday) / 10000) . '歳';
                         ?>
                         </td>                        <td><?php echo h($search['status_name']); ?></td>
-                        <td><a href="">詳細</a></td>
+                        <td><a href="detail.php?id=<?php echo h($search['id']); ?>">詳細</a></td>
                     </tr>
                 <?php endwhile; ?>
             </div>
