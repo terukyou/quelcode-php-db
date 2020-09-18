@@ -1,6 +1,16 @@
 <?php require('../../entry/dbconnect.php');
 $searches = $db->query('SELECT u.id, created_at, u.name as user_name, phonetic, prefecture.name as prefecture_name, birthday, s.name as status_name FROM users u, status s,prefecture WHERE u.prefecture_id=prefecture.id AND u.status_id=s.id ORDER BY u.id ASC');
 $searches->execute();
+if (!empty($_GET)) {
+    // 名前とステータスどっちも
+    if (!empty($_GET['name'] && (int)$_GET['status'] > 0)) {
+        $searches = $db->prepare('SELECT u.id, created_at, u.name as user_name, phonetic, prefecture.name as prefecture_name, birthday, s.name as status_name FROM users u, status s,prefecture WHERE s.id=? AND(u.name LIKE ? OR phonetic LIKE ?) AND u.prefecture_id=prefecture.id AND u.status_id=s.id');
+        $searches->bindValue(1, $_GET['status'], PDO::PARAM_INT);
+        $searches->bindValue(2, '%' . $_GET['name'] . '%');
+        $searches->bindValue(3, '%' . $_GET['name'] . '%');
+        $searches->execute();
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
