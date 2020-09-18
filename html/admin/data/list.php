@@ -84,7 +84,12 @@ if (!empty($_GET)) {
                                 <rt><?php echo h($search['phonetic']); ?></rt>
                             </ruby>
                         </td>
-                        <td><?php echo h($search['created_at']); ?></td>
+                        <td><?php
+                        $created_style = str_replace("-", "/", $search['birthday']);
+                        $created_at= substr($created_style,0,10);
+                        echo h($created_at);
+                        ?>
+                        </td>
                         <td><?php echo h($search['prefecture_name']); ?></td>
                         <td>
                         <?php
