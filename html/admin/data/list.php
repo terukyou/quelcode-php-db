@@ -49,8 +49,8 @@ if (!empty($_GET)) {
             <form action="" method="get">
                 <p>検索</p>
                 <label>名前</label>
-                <input type="text" name="name">
-                
+                <input type="text" name="name" value="<?php echo h($_GET['name']);?>">
+
                 <label>ステータス</label>
                 <select name="status">
                     <option value="0">すべて</option>
