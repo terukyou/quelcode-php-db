@@ -1,3 +1,11 @@
+<?php require('../../entry/dbconnect.php');
+if (!empty($_REQUEST['id'])) {
+    $user_informations = $db->prepare('SELECT status_id,u.id,created_at,u.name AS user_name,phonetic,email,phone,birthday,p.name AS prefecture_name FROM users u,prefecture p WHERE u.id=? AND prefecture_id=p.id');
+    $user_informations->bindValue(1, $_REQUEST['id'], PDO::PARAM_INT);
+    $user_informations->execute();
+}
+$user = $user_informations->fetchAll();
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -19,13 +27,21 @@
             <h2>申し込み詳細</h2>
             </select>
             <p>No</p>
+            <?php echo h($user[0]['id']); ?>
             <p>申込日時</p>
+            <?php echo h($user[0]['created_at']); ?>
             <p>名前</p>
+            <?php echo h($user[0]['user_name']); ?>
             <p>ふりがな</p>
+            <?php echo h($user[0]['phonetic']); ?>
             <p>メールアドレス</p>
+            <?php echo h($user[0]['email']); ?>
             <p>電話番号</p>
+            <?php echo h($user[0]['phone']); ?>
             <p>生年月日</p>
+            <?php echo h($user[0]['birthday']); ?>
             <p>都道府県</p>
+            <?php echo h($user[0]['prefecture_name']); ?>
             <a href="list.php">一覧戻る</a>
         </section>
     </main>
