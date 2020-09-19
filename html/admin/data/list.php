@@ -96,17 +96,17 @@ if (!empty($_GET)) {
                 <?php foreach ($search_information as $search) : ?>
                     <tr>
                         <td><?php echo h($search['id']); ?></td>
-                        <td>
-                            <ruby>
-                                <rb><?php echo h($search['user_name']); ?></rb>
-                                <rt><?php echo h($search['phonetic']); ?></rt>
-                            </ruby>
-                        </td>
                         <td><?php
                         $created_style = str_replace("-", "/", $search['birthday']);
                         $created_at= substr($created_style,0,10);
                         echo h($created_at);
                         ?>
+                        </td>
+                        <td>
+                            <ruby>
+                                <rb><?php echo h($search['user_name']); ?></rb>
+                                <rt><?php echo h($search['phonetic']); ?></rt>
+                            </ruby>
                         </td>
                         <td><?php echo h($search['prefecture_name']); ?></td>
                         <td>
