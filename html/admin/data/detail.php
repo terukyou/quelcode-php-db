@@ -32,7 +32,7 @@ $user = $user_informations->fetchAll();
             $statuses = $db->query('SELECT * FROM status');
             while ($status = $statuses->fetch()) :
             ?>
-            <option value="<?php echo h($status['id']); ?>">
+            <option value="<?php echo h($status['id']); ?>" <?php if ($status['id'] == $user[0]['status_id']) { echo 'selected';} ?>>
                 <?php echo h($status['name']); ?>
             </option>
             <?php endwhile; ?>
