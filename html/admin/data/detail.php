@@ -25,7 +25,20 @@ $user = $user_informations->fetchAll();
         </header>
         <section>
             <h2>申し込み詳細</h2>
+            <label>ステータス</label>
+            <form action="update.php" method="post">
+            <select name="status">
+            <?php
+            $statuses = $db->query('SELECT * FROM status');
+            while ($status = $statuses->fetch()) :
+            ?>
+            <option value="<?php echo h($status['id']); ?>">
+                <?php echo h($status['name']); ?>
+            </option>
+            <?php endwhile; ?>
             </select>
+            <input type="submit" value="更新">
+            </form>
             <p>No</p>
             <?php echo h($user[0]['id']); ?>
             <p>申込日時</p>
