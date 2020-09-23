@@ -26,6 +26,10 @@ $user = $user_informations->fetchAll();
         <section>
             <h2>申し込み詳細</h2>
             <label>ステータス</label>
+            <!-- ステータスが退会の時フォームを表示せず「退会」とだけ表示 -->
+            <?php if ((int)$user[0]['status_id'] === 6) : ?>
+                <p>退会</p>
+            <?php else : ?>
             <form action="update.php" method="post">
             <select name="status">
             <?php
@@ -40,6 +44,7 @@ $user = $user_informations->fetchAll();
             <input type="hidden" value="<?php echo h($user[0]['id'])?>" name='id'>
             <input type="submit" value="更新">
             </form>
+            <?php endif; ?>
             <p>No</p>
             <?php echo h($user[0]['id']); ?>
             <p>申込日時</p>
