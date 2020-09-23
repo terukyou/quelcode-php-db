@@ -58,7 +58,12 @@ $user = $user_informations->fetchAll();
             <p>電話番号</p>
             <?php echo h($user[0]['phone']); ?>
             <p>生年月日</p>
-            <?php echo h($user[0]['birthday']); ?>
+            <?php echo h($user[0]['birthday']);
+            // 誕生日の日付から年齢を計算 
+            $now = date("Ymd");
+            $birthday = str_replace("/", "", $user[0]['birthday']);
+            echo '(満 '.floor(($now - $birthday) / 10000) . '歳)';
+            ?>
             <p>都道府県</p>
             <?php echo h($user[0]['prefecture_name']); ?>
             <a href="list.php">一覧戻る</a>
