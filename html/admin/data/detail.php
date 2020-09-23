@@ -1,4 +1,10 @@
 <?php require('../../entry/dbconnect.php');
+session_start();
+if(isset($_SESSION['message'])){
+    $message=$_SESSION['message'];
+    unset($_SESSION['message']);
+}
+
 if (!empty($_REQUEST['id'])) {
     $user_informations = $db->prepare('SELECT status_id,u.id,created_at,u.name AS user_name,phonetic,email,phone,birthday,p.name AS prefecture_name FROM users u,prefecture p WHERE u.id=? AND prefecture_id=p.id');
     $user_informations->bindValue(1, $_REQUEST['id'], PDO::PARAM_INT);
@@ -45,6 +51,7 @@ $user = $user_informations->fetchAll();
             <input type="submit" value="更新">
             </form>
             <?php endif; ?>
+            <p><?=$message?></p>
             <p>No</p>
             <?php echo h($user[0]['id']); ?>
             <p>申込日時</p>
