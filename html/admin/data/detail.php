@@ -37,6 +37,7 @@ $user = $user_informations->fetchAll();
             </option>
             <?php endwhile; ?>
             </select>
+            <input type="hidden" value="<?php echo h($user[0]['id'])?>" name='id'>
             <input type="submit" value="更新">
             </form>
             <p>No</p>
